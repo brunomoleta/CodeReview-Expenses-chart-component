@@ -21,31 +21,32 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./dist/index.css" />
+    <link rel="stylesheet" href="css/output.css">
+
   </head>
   <body>
     <main>
-      <section class="expenses-component">
+      <h1 class="sr-only">Expenses Chart</h1>
+      <article class="expenses-component">
         <header class="expenses-component__header">
           <div class="expenses-component__header-info">
-            <span class="expenses-component__header-title"> My balance</span>
-            <span class="expenses-component__header-balance" id="balance">
-            </span>
+            <h2 class="expenses-component__header-title"> My balance</h2>
+            <strong class="expenses-component__header-balance" id="balance">
+            </strong>
           </div>
           <div>
             <img src="./images/logo.svg" width="72" height="48" alt="" />
           </div>
         </header>
-        <div class="expenses-component__body">
-          <h2 class="expenses-component__title">Spending - Last 7 days</h2>
+        <section class="expenses-component__body">
+          <h2 class="expenses-component__title">Spending - Last&nbsp;7&nbsp;days</h2>
           <div id="chart" class="expenses-component__chart"></div>
-          <footer class="expenses-component__footer">
+          <div class="expenses-component__footer">
             <div>
-              <span class="expenses-component__footer-title">
+              <h3 class="expenses-component__footer-title">
                 Total this month
-              </span>
+              </h3>
               <span class="expenses-component__footer-total" id="total">
-                $478.33
               </span>
             </div>
             <div>
@@ -58,9 +59,9 @@
                 from last month</span
               >
             </div>
-          </footer>
-        </div>
-      </section>
+          </div>
+        </section>
+      </article>
     </main>
 
     <footer class="attribution">
