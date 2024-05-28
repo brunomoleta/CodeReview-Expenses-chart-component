@@ -1,0 +1,239 @@
+@mixin mobile {
+  @media (max-width: 540px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 885px) {
+    @content;
+  }
+}
+
+// VARIABLES
+
+:root {
+  --color-primary-soft-red: hsl(10, 79%, 65%);
+  --color-primary-light-soft-red: hsl(10, 100%, 76%);
+  --color-primary-cyan: hsl(186, 34%, 60%);
+  --color-primary-light-cyan: hsl(186, 49%, 80%);
+
+  --color-neutral-dark-brown: hsl(25, 47%, 15%);
+  --color-neutral-medium-brown: hsl(28, 10%, 53%);
+  --color-neutral-cream: hsl(27, 66%, 92%);
+  --color-neutral-very-pale-orange: hsl(33, 100%, 98%);
+  --color-neutral-white: hsl(0, 100%, 100%);
+  --font-family: "DM Sans", sans-serif;
+  --body-font-size: 1.8rem;
+  --heading-xl-font-size: 4.8rem;
+  --heading-l-font-size: 3.2rem;
+  --mini-caption-font-size: 1.5rem;
+
+  @include mobile {
+    --body-font-size: var(--mini-caption-font-size);
+    --heading-xl-font-size: 3rem;
+    --heading-l-font-size: 2.4rem;
+    --mini-caption-font-size: 1.2rem;
+  }
+}
+
+// RESET
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+// GENERAL STYLES
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--color-neutral-cream);
+  font-size: var(--body-font-size);
+  font-family: var(--font-family);
+  color: var(--color-neutral-dark-brown);
+}
+
+// EXPENSES COMPONENT
+
+.expenses-component {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  width: 100%;
+  max-width: 540px;
+
+  @include mobile {
+    gap: 1.6rem;
+    margin: 6.7rem 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.7rem 3.2rem;
+    background-color: var(--color-primary-soft-red);
+    border-radius: 2rem;
+    color: var(--color-neutral-white);
+
+    @include mobile {
+      padding: 2rem;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    &-balance {
+      font-size: var(--heading-l-font-size);
+      font-weight: 700;
+    }
+  }
+
+  &__body {
+    background-color: var(--color-neutral-very-pale-orange);
+    padding: 3.2rem 4rem;
+    border-radius: 2rem;
+
+    @include mobile {
+      padding: 2.4rem 2rem;
+    }
+  }
+
+  &__title {
+    font-size: var(--heading-l-font-size);
+    margin-bottom: 6.6rem;
+  }
+
+  &__chart {
+    display: flex;
+    gap: 1.8rem;
+    align-items: flex-end;
+    text-align: center;
+    min-height: 178px;
+
+    @include mobile {
+      gap: 1.2rem;
+    }
+
+    &-col {
+      height: 100%;
+      position: relative;
+    }
+
+    &-number {
+      display: none;
+      background-color: var(--color-neutral-dark-brown);
+      color: var(--color-neutral-very-pale-orange);
+      font-weight: 700;
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      position: absolute;
+      transform: translate(-50%, -125%);
+
+      &--visible {
+        display: inline-block;
+      }
+    }
+
+    &-bar {
+      width: 50px;
+      height: 120px;
+      background-color: var(--color-primary-soft-red);
+      border-radius: 0.5rem;
+
+      @include mobile {
+        width: 33px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: var(--color-primary-light-soft-red);
+      }
+
+      &--today {
+        background-color: var(--color-primary-cyan);
+
+        &:hover {
+          background-color: var(--color-primary-light-cyan);
+        }
+      }
+    }
+
+    &-day {
+      font-size: var(--mini-caption-font-size);
+      color: var(--color-neutral-medium-brown);
+      display: block;
+      margin-top: 0.8rem;
+    }
+  }
+
+  &__footer {
+    margin-top: 3.2rem;
+    padding-top: 3.2rem;
+    border-top: 2px solid var(--color-neutral-cream);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    &-title {
+      color: var(--color-neutral-medium-brown);
+      display: block;
+    }
+
+    &-total {
+      font-size: var(--heading-xl-font-size);
+      font-weight: 700;
+    }
+
+    &-difference {
+      font-weight: 700;
+      display: block;
+      width: 100%;
+      text-align: right;
+    }
+
+    &-last-month {
+      display: block;
+      color: var(--color-neutral-medium-brown);
+      margin-bottom: 0.8rem;
+    }
+  }
+}
+
+// ATTRIBUTION
+
+.attribution {
+  position: fixed;
+  bottom: 0;
+  font-size: 11px;
+  text-align: center;
+  background: var(--color-neutral-very-pale-orange);
+  padding: 1rem;
+  left: 0;
+  border-top-right-radius: 1rem;
+
+  @include tablet {
+    display: none;
+  }
+}
+.attribution a {
+  color: var(--color-primary-soft-red);
+
+  &:hover {
+    text-decoration: none;
+  }
+}
