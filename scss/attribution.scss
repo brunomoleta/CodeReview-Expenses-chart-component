@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'mediaQuery';
+
+
+.attribution {
+  position: fixed;
+  bottom: 0;
+  font-size: 11px;
+  text-align: center;
+  background: var(--color-neutral-very-pale-orange);
+  padding: 1rem;
+  left: 0;
+  border-top-right-radius: 1rem;
+
+  @include tablet {
+    display: none;
+  }
+}
+.attribution a {
+  color: var(--color-primary-soft-red);
+
+  &:hover {
+    text-decoration: none;
+  }
+}

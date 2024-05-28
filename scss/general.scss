@@ -1,0 +1,23 @@
+@import "./variables.scss";
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--color-neutral-cream);
+  font-size: var(--body-font-size);
+  font-family: var(--font-family);
+  color: var(--color-neutral-dark-brown);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}

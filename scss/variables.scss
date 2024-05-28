@@ -1,0 +1,26 @@
+
+:root {
+  --color-primary-soft-red: hsl(10, 79%, 65%);
+  --color-primary-light-soft-red: hsl(10, 100%, 76%);
+  --color-primary-cyan: hsl(186, 34%, 60%);
+  --color-primary-light-cyan: hsl(186, 49%, 80%);
+
+  --color-neutral-dark-brown: hsl(25, 47%, 15%);
+  --color-neutral-medium-brown: hsl(28, 10%, 53%);
+  --color-neutral-cream: hsl(27, 66%, 92%);
+  --color-neutral-very-pale-orange: hsl(33, 100%, 98%);
+  --color-neutral-white: hsl(0, 100%, 100%);
+  --font-family: "DM Sans", sans-serif;
+  --body-font-size: 1.8rem;
+  --heading-xl-font-size: 4.8rem;
+  --heading-l-font-size: 3.2rem;
+  --mini-caption-font-size: 1.5rem;
+
+  @include mobile {
+    --body-font-size: var(--mini-caption-font-size);
+    --heading-xl-font-size: 3rem;
+    --heading-l-font-size: 2.4rem;
+    --mini-caption-font-size: 1.2rem;
+  }
+}
+

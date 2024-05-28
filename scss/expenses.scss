@@ -1,77 +1,14 @@
-@mixin mobile {
-  @media (max-width: 540px) {
-    @content;
-  }
-}
-
-@mixin tablet {
-  @media (max-width: 885px) {
-    @content;
-  }
-}
-
-// VARIABLES
-
-:root {
-  --color-primary-soft-red: hsl(10, 79%, 65%);
-  --color-primary-light-soft-red: hsl(10, 100%, 76%);
-  --color-primary-cyan: hsl(186, 34%, 60%);
-  --color-primary-light-cyan: hsl(186, 49%, 80%);
-
-  --color-neutral-dark-brown: hsl(25, 47%, 15%);
-  --color-neutral-medium-brown: hsl(28, 10%, 53%);
-  --color-neutral-cream: hsl(27, 66%, 92%);
-  --color-neutral-very-pale-orange: hsl(33, 100%, 98%);
-  --color-neutral-white: hsl(0, 100%, 100%);
-  --font-family: "DM Sans", sans-serif;
-  --body-font-size: 1.8rem;
-  --heading-xl-font-size: 4.8rem;
-  --heading-l-font-size: 3.2rem;
-  --mini-caption-font-size: 1.5rem;
-
-  @include mobile {
-    --body-font-size: var(--mini-caption-font-size);
-    --heading-xl-font-size: 3rem;
-    --heading-l-font-size: 2.4rem;
-    --mini-caption-font-size: 1.2rem;
-  }
-}
-
-// RESET
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-// GENERAL STYLES
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: var(--color-neutral-cream);
-  font-size: var(--body-font-size);
-  font-family: var(--font-family);
-  color: var(--color-neutral-dark-brown);
-}
-
-// EXPENSES COMPONENT
+@import "variables";
 
 .expenses-component {
+  --chart-col-height:178px;
+  --component-pd:clamp(.6rem,1svw,2.4rem) 2rem;
+
+  margin-block: 40px 64px;
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
   width: 100%;
-  max-width: 540px;
 
   @include mobile {
     gap: 1.6rem;
@@ -88,7 +25,7 @@ body {
     color: var(--color-neutral-white);
 
     @include mobile {
-      padding: 2rem;
+      padding: var(--component-pd);
     }
 
     &-info {
@@ -109,43 +46,50 @@ body {
     border-radius: 2rem;
 
     @include mobile {
-      padding: 2.4rem 2rem;
+      padding: var(--component-pd);
     }
   }
 
   &__title {
+    font-weight: 600;
     font-size: var(--heading-l-font-size);
     margin-bottom: 6.6rem;
   }
 
   &__chart {
     display: flex;
-    gap: 1.8rem;
+    justify-content: space-between;
     align-items: flex-end;
     text-align: center;
-    min-height: 178px;
+    min-height: var(--chart-col-height);
 
     @include mobile {
-      gap: 1.2rem;
+      gap: clamp(.5rem, 3svw, 1.2rem);
     }
 
     &-col {
-      height: 100%;
+      min-height: var(--chart-col-height);
       position: relative;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: flex-end;
     }
 
     &-number {
-      display: none;
+      opacity: 0;
+      transition: opacity 600ms ease-in-out;
       background-color: var(--color-neutral-dark-brown);
       color: var(--color-neutral-very-pale-orange);
       font-weight: 700;
       padding: 0.8rem;
       border-radius: 0.5rem;
       position: absolute;
-      transform: translate(-50%, -125%);
+      transform: translate(0%, 100%);
 
       &--visible {
-        display: inline-block;
+        transition: opacity 200ms ease-in-out;
+        opacity: 1;
       }
     }
 
@@ -192,6 +136,7 @@ body {
     &-title {
       color: var(--color-neutral-medium-brown);
       display: block;
+      font-weight: 600;
     }
 
     &-total {
@@ -210,30 +155,8 @@ body {
       display: block;
       color: var(--color-neutral-medium-brown);
       margin-bottom: 0.8rem;
+      text-align: end;
     }
   }
 }
 
-// ATTRIBUTION
-
-.attribution {
-  position: fixed;
-  bottom: 0;
-  font-size: 11px;
-  text-align: center;
-  background: var(--color-neutral-very-pale-orange);
-  padding: 1rem;
-  left: 0;
-  border-top-right-radius: 1rem;
-
-  @include tablet {
-    display: none;
-  }
-}
-.attribution a {
-  color: var(--color-primary-soft-red);
-
-  &:hover {
-    text-decoration: none;
-  }
-}
