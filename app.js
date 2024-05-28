@@ -3,13 +3,10 @@ const totalEl = document.getElementById("total");
 const balanceEl = document.getElementById("balance");
 const differenceEl = document.getElementById("difference");
 
-const income = 2000;
-
 class ExpenseCalculator {
   data = [];
   income = 0;
   expensesLastMonth = 0;
-  balance = 0;
 
   constructor(income, expensesLastMonth) {
     this.income = income;
@@ -19,23 +16,12 @@ class ExpenseCalculator {
   setData(data) {
     this.data = data;
   }
-
-  getData() {
-    return this.data;
-  }
-
   getTotal() {
-    return this.data.reduce((total, item) => (total += item.amount), 0);
+    return this.data.reduce((total, item) => (total + item.amount), 0);
   }
 
   getBalance() {
     return this.income - this.getTotal();
-  }
-
-  getDifference() {
-    const total = this.getTotal();
-
-    return;
   }
 
   getDifference() {
